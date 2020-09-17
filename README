@@ -1,0 +1,56 @@
+Most new commit of stlink-org/stlink repository which fine worked with my old hardware is d85cd81e2e7b0938018224382f2a9485b3cdad3d.
+Next commit is d21471650543cc9071ed3821298bcd8c35f5a603 not flashing STM32F100xx microcontroller throught STM32ValueLine1discovery programmer.
+
+
+My arm-none-eabi-gdb speaks about flashing operation error:
+
+(gdb) load main.elf 
+Loading section .text, size 0x1ca0 lma 0x8000000
+Loading section .rodata, size 0x38 lma 0x8001ca0
+Loading section .data, size 0x8 lma 0x8001cd8
+Error finishing flash operation
+(gdb) 
+
+
+Log of st-util program:
+
+leha@dom ~ $ st-util --version
+v1.5.1-23-gd214716
+leha@dom ~ $ st-util -1
+st-util 1.5.1-23-gd214716
+2020-09-17T21:05:58 INFO common.c: Loading device parameters....
+2020-09-17T21:05:58 INFO common.c: Device connected is: F1 Medium/Low-density Value Line device, id 0x10016420
+2020-09-17T21:05:58 INFO common.c: SRAM size: 0x2000 bytes (8 KiB), Flash: 0x10000 bytes (64 KiB) in pages of 1024 bytes
+2020-09-17T21:05:58 INFO sg.c: Successfully opened a stlink v1 debugger
+2020-09-17T21:05:58 INFO gdb-server.c: Chip ID is 00000420, Core ID is  1ba01477.
+2020-09-17T21:05:58 INFO gdb-server.c: Listening at *:4242...
+2020-09-17T21:06:09 INFO gdb-server.c: Found 6 hw breakpoint registers
+2020-09-17T21:06:09 INFO gdb-server.c: GDB connected.
+2020-09-17T21:06:12 INFO common.c: Attempting to write 1024 (0x400) bytes to stm32 address: 134217728 (0x8000000)
+Flash page at addr: 0x08000000 erased
+2020-09-17T21:06:12 INFO common.c: Finished erasing 1 pages of 1024 (0x400) bytes
+2020-09-17T21:06:12 INFO common.c: Starting Flash write for VL/F0/F3/F1_XL core id
+2020-09-17T21:06:12 INFO flash_loader.c: Successfully loaded flash loader in sram
+
+2020-09-17T21:06:12 INFO common.c: Starting verification of write complete
+2020-09-17T21:06:12 INFO common.c: Flash written and verified! jolly good!
+2020-09-17T21:06:12 INFO common.c: Attempting to write 1024 (0x400) bytes to stm32 address: 134218752 (0x8000400)
+Flash page at addr: 0x08000400 erased
+2020-09-17T21:06:12 INFO common.c: Finished erasing 1 pages of 1024 (0x400) bytes
+2020-09-17T21:06:12 INFO common.c: Starting Flash write for VL/F0/F3/F1_XL core id
+2020-09-17T21:06:12 INFO flash_loader.c: Successfully loaded flash loader in sram
+2020-09-17T21:06:12 ERROR flash_loader.c: write error, count == 511
+2020-09-17T21:06:12 ERROR common.c: stlink_flash_loader_run(0x8000400) failed! == -1
+^Cleha@dom ~ $ 
+--------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
